@@ -39,10 +39,16 @@ public class Main {
             else if(respuesta == 2) {
                 System.out.println("Bienvenido al registro");
                 System.out.println("Para registrarse como empleado digite [1]");
-                System.out.println("");
+                System.out.println("Para registrarse como un Empleador digite [2]");
+                respuesta = scan.nextInt();
+                if (respuesta == 1){
+                    Empleado.registroEmpleado();
+                }
+                else if(respuesta == 2){
+                    Empleador.registroEmpleador();
+                }
             }
         }
     }
-
 }
 
