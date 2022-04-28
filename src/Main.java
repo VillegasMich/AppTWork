@@ -1,4 +1,9 @@
+import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.BufferedWriter;
+import java.io.BufferedReader;
+import java.io.*;
+
 public class Main {
     public static void main(String[] args) {
         menuPrincipal();
@@ -34,7 +39,7 @@ public class Main {
         int respuesta = scan.nextInt();
         while(true) {
             if(respuesta == 1) {
-
+                break;
             }
             else if(respuesta == 2) {
                 System.out.println("Bienvenido al registro");
@@ -43,6 +48,7 @@ public class Main {
                 respuesta = scan.nextInt();
                 if (respuesta == 1){
                     Empleado.registroEmpleado();
+
                 }
                 else if(respuesta == 2){
                     Empleador.registroEmpleador();
@@ -50,5 +56,9 @@ public class Main {
             }
         }
     }
+
+
+
+
 }
 
