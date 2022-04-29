@@ -1,11 +1,11 @@
 public class Usuario {
-    
+
     private String nombre;
     private String contraseña;
     private String ubicacion;// Definir ubicaciones.
-    private int telefono;
+    private Long telefono;
     private String correo;
-    
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -30,11 +30,11 @@ public class Usuario {
         return ubicacion;
     }
 
-    public int getTelefono() {
+    public Long getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(Long telefono) {
         this.telefono = telefono;
     }
 
@@ -46,7 +46,7 @@ public class Usuario {
         this.correo = correo;
     }
 
-    public Usuario(String nom, String con, String ubic, int tel, String corr){
+    public Usuario(String nom, String con, String ubic, Long tel, String corr){
         this.contraseña = con;
         this.nombre = nom;
         this.ubicacion = ubic;

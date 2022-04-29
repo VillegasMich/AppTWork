@@ -1,10 +1,14 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 public class Empleador extends Usuario{
 
     private int ofertas;
     private String requi;
 
-    public Empleador(String nom, String con, String ubic, int tel, String corr, int ofer, String requi) {
+    public Empleador(String nom, String con, String ubic, Long tel, String corr, int ofer, String requi) {
         super(nom, con, ubic, tel, corr);
         this.ofertas = ofer;
         this.requi = requi;
@@ -29,7 +33,7 @@ public class Empleador extends Usuario{
     @Override
     public String toString(){
             String encript = getContraseña().replaceAll(getContraseña(), "*******");
-            return "Nombre "+ getNombre() + " - Contraseña "+ encript + " - Ubicacion "+ getUbicacion() + " - Telefono " + getTelefono() + " - Correo "+ getCorreo();
+            return "Nombre "+ getNombre() + " - Contraseña "+ encript + " - Ubicacion "+ getUbicacion() + " - Telefono " + getTelefono() + " - Correo "+ getCorreo() + " - Requisitos " + getRequi() + " - Ofertas " + getOfertas();
         }
 
     public static void registroEmpleador(){
@@ -42,7 +46,7 @@ public class Empleador extends Usuario{
              System.out.println("Ingrese donde esta ubicado su negocio: ");
              String ubi = scan.next();
              System.out.println("Ingrese su numero de telefono empresarial: ");
-             int tele = scan.nextInt();
+             Long tele = scan.nextLong();
               while (true){
                   System.out.println("Ingrese su correo: ");
                    corr = scan.next();
@@ -53,11 +57,41 @@ public class Empleador extends Usuario{
                         break;
                     }
              }
-             System.out.println("Digite los requisitos para ingresar al trabajo: ");
+             System.out.println("Digite los requisitos para ingresar al trabajo(Ejemplo: Panadero, ayudante etc...): ");
              String requi = scan.next();
-             System.out.println("Digite las ofertas de su negocio (Ejemplo: Panadero, ayudante etc...)");
+             System.out.println("Digite las ofertas de su negocio ");
              int numOfer = scan.nextInt();
              Empleador empleador = new Empleador(nom, cont, ubi, tele, corr,numOfer, requi);
              System.out.println("Ha quedado registrado como: " + empleador);
+
+             escribirEmpleador(empleador);
         }
+
+        public static void escribirEmpleador(Empleador empleador){
+
+
+                File f = new File("DatosEmpleador.txt");
+                FileWriter datos = null;
+                PrintWriter pw = null;
+
+
+                if (!f.exists()) {
+                    try{
+                        f.createNewFile();
+                    }catch(IOException exception){
+                        System.err.println("Error creating the file");
+                    }
+                }
+
+                try {
+                    datos = new FileWriter("DatosEmpleador.txt",true);
+                    pw = new PrintWriter(datos);
+                    pw.println(empleador.getNombre() + "," + empleador.getContraseña() + "," + empleador.getUbicacion() + "," + empleador.getTelefono() + "," + empleador.getCorreo() + "," +  empleador.getRequi() + "," + empleador.getOfertas());
+                    datos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
 }

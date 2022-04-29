@@ -4,11 +4,11 @@ import java.util.Scanner;
 
 public class Empleado extends Usuario {
 
-    public Empleado(String nom, String con, String ubic, int tel, String corr) {
+    public Empleado(String nom, String con, String ubic, Long tel, String corr) {
         super(nom, con, ubic, tel, corr);
     }
 
-    public static void registroEmpleado() {
+    public static void registroEmpleado()  {
             Scanner scan = new Scanner(System.in);
             System.out.println("Ingrese su nombre: ");
             String nom = scan.next();
@@ -17,7 +17,7 @@ public class Empleado extends Usuario {
             System.out.println("Ingrese su ubicacion: ");
             String ubi = scan.next();
             System.out.println("Ingrese su numero de telefono: ");
-            int tele = scan.nextInt();
+            Long tele = scan.nextLong();
             String corr;
             while (true){
                 System.out.println("Ingrese su correo: ");
@@ -32,8 +32,6 @@ public class Empleado extends Usuario {
             }
 
             Empleado empleado = new Empleado(nom,cont,ubi,tele, corr);
-            escrituraEmpleados(empleado);
-            escrituraEmpleados(empleado);
             escrituraEmpleados(empleado);
             System.out.println("Ha quedado registrado como: " +empleado);
 
@@ -78,20 +76,32 @@ public class Empleado extends Usuario {
         */
 
 
-    public static void escrituraEmpleados(Empleado empleado) {
-        FileWriter datos;
-        {
-            try {
-                datos = new FileWriter("DatosEmpleados.txt");
-                datos.write(empleado.getNombre() + ",");
-                datos.write(empleado.getContraseña() + ",");
-                datos.write(empleado.getUbicacion() + ",");
-                datos.write(empleado.getTelefono()+ ",");
-                datos.write(empleado.getCorreo() + "\r\n");
-                datos.close();
-            } catch (IOException e) {
-                e.printStackTrace();
+    public static void escrituraEmpleados(Empleado empleado)  {
+
+        File f = new File("DatosEmpleados.txt");
+        FileWriter datos = null;
+        PrintWriter pw = null;
+
+
+        if (!f.exists()) {
+            try{
+                f.createNewFile();
+            }catch(IOException exception){
+                System.err.println("Error creating the file");
             }
         }
+
+        try {
+            datos = new FileWriter("DatosEmpleados.txt",true);
+            pw = new PrintWriter(datos);
+            pw.println(empleado.getNombre() + "," + empleado.getContraseña() + "," + empleado.getUbicacion() + "," + empleado.getTelefono() + "," + empleado.getCorreo());
+            datos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
+
     }
 }
