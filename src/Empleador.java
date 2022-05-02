@@ -1,7 +1,5 @@
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 public class Empleador extends Usuario{
 
@@ -91,7 +89,54 @@ public class Empleador extends Usuario{
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
-
             }
+
+    public static void lecturaDeEmpleadores(ArrayList<String[]> datosEmpleado) {
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new FileReader("DatosEmpleador.txt"));
+            String line = null;
+            while((line = reader.readLine()) != null) {
+                String[] datosUsuario = line.split(",");
+                datosEmpleado.add(datosUsuario);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void lecturaEmpleadores() {
+        ArrayList<String[]> datosEmpleador = new ArrayList<String[]>();
+        lecturaDeEmpleadores(datosEmpleador);
+        Scanner scan = new Scanner(System.in);
+
+        while(true){
+            String nombre = "";
+            String contraseña = "";
+            System.out.println("Ingrese su nombre de usuario: ");
+            String usuario = scan.next();
+            System.out.println("Ingrese su contraseña: ");
+            String contraseña2 = scan.next();
+
+            for (int i = 0; i < datosEmpleador.size(); i++){
+                nombre = datosEmpleador.get(i)[0];
+                contraseña = datosEmpleador.get(i)[1];
+                if(!nombre.equals(usuario) && !contraseña.equals(contraseña2)){
+                    continue;
+                }
+                else{
+                    break;
+                }
+            }
+            if (nombre.equals(usuario) && contraseña.equals(contraseña2)){
+                System.out.println("Contraseña correcta :)");
+                break;
+            }
+            else{
+                System.out.println("Usuario o contraseña incorreta");
+                continue;
+            }
+        }
+    }
+
 }

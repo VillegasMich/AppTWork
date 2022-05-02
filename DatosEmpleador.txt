@@ -1,0 +1,3 @@
+kfc,12345,viva,123434,ds@sd,panadero,44
+leños,7890,dsd,123,fw@ds,rappi,3
+wendys,4567,nose,2324,fe@dr,etc,56

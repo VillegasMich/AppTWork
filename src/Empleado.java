@@ -38,23 +38,37 @@ public class Empleado extends Usuario {
             //hacerl lo del archivo
         }
 
-       /*
+
          public static void lecturaEmpleado() {
                 ArrayList<String[]> datosEmpleado = new ArrayList<String[]>();
                 lecturaDeEmpleados(datosEmpleado);
+                Scanner scan = new Scanner(System.in);
 
+                while(true){
+                    String nombre = "";
+                    String contraseña = "";
+                    System.out.println("Ingrese su nombre de usuario: ");
+                    String usuario = scan.next();
+                    System.out.println("Ingrese su contraseña: ");
+                    String contraseña2 = scan.next();
 
-                for(int i = 0; i < datosEmpleado.size(); i++){
-                    String nombre = datosEmpleado.get(i)[0];
-                    String contraseña = datosEmpleado.get(i)[1];
-
-                        if() {
-                        System.out.println();
-                        System.out.println();
+                    for (int i = 0; i < datosEmpleado.size(); i++){
+                        nombre = datosEmpleado.get(i)[0];
+                        contraseña = datosEmpleado.get(i)[1];
+                        if(!nombre.equals(usuario) && !contraseña.equals(contraseña2)){
+                            continue;
+                        }
+                        else{
+                            break;
+                        }
+                    }
+                    if (nombre.equals(usuario) && contraseña.equals(contraseña2)){
+                        System.out.println("Contraseña correcta :)");
                         break;
                     }
-                    else {
-                        System.out.println("usuario o contraseña incorrecta");
+                    else{
+                        System.out.println("Usuario o contraseña incorreta");
+                        continue;
                     }
                 }
             }
@@ -63,7 +77,7 @@ public class Empleado extends Usuario {
             public static void lecturaDeEmpleados(ArrayList<String[]> datosEmpleado) {
                     BufferedReader reader = null;
                     try {
-                        reader = new BufferedReader(new FileReader("Datos1.txt"));
+                        reader = new BufferedReader(new FileReader("DatosEmpleados.txt"));
                         String line = null;
                         while((line = reader.readLine()) != null) {
                             String[] datosUsuario = line.split(",");
@@ -73,7 +87,7 @@ public class Empleado extends Usuario {
                         e.printStackTrace();
                         }
                 }
-        */
+
 
 
     public static void escrituraEmpleados(Empleado empleado)  {
