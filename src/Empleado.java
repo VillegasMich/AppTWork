@@ -46,28 +46,28 @@ public class Empleado extends Usuario {
 
                 while(true){
                     String nombre = "";
-                    String contraseña = "";
+                    String contrasena = "";
                     System.out.println("Ingrese su nombre de usuario: ");
                     String usuario = scan.next();
                     System.out.println("Ingrese su contraseña: ");
-                    String contraseña2 = scan.next();
+                    String contrasena2 = scan.next();
 
                     for (int i = 0; i < datosEmpleado.size(); i++){
                         nombre = datosEmpleado.get(i)[0];
-                        contraseña = datosEmpleado.get(i)[1];
-                        if(!nombre.equals(usuario) && !contraseña.equals(contraseña2)){
+                        contrasena = datosEmpleado.get(i)[1];
+                        if(!nombre.equals(usuario) && !contrasena.equals(contrasena2)){
                             continue;
                         }
                         else{
                             break;
                         }
                     }
-                    if (nombre.equals(usuario) && contraseña.equals(contraseña2)){
+                    if (nombre.equalsIgnoreCase(usuario) && contrasena.equalsIgnoreCase(contrasena2)){
                         System.out.println("Contraseña correcta :)");
                         break;
                     }
                     else{
-                        System.out.println("Usuario o contraseña incorreta");
+                        System.out.println("Usuario o contraseña incorreta" + nombre);
                         continue;
                     }
                 }
