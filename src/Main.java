@@ -43,7 +43,7 @@ public class Main {
                 System.out.println("[2] Empleador");
                 respuesta = scan.nextInt();
                 if (respuesta == 1) {
-                    Empleado.lecturaEmpleado();
+                    Empleado.mostrarRecomendaciones(Empleado.lecturaEmpleado());
                 } else if (respuesta == 2) {
                     Empleador.lecturaEmpleadores();
                 }

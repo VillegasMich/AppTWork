@@ -1,11 +1,23 @@
+import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Empleado extends Usuario {
 
-    public Empleado(String nom, String con, String ubic, Long tel, String corr) {
+    public String getProfesion() {
+        return profesion;
+    }
+
+    public void setProfesion(String profesion) {
+        this.profesion = profesion;
+    }
+
+    private String profesion;
+
+    public Empleado(String nom, String con, String ubic, Long tel, String corr,String profesion) {
         super(nom, con, ubic, tel, corr);
+        this.profesion = profesion;
     }
 
     public static void registroEmpleado()  {
@@ -30,8 +42,9 @@ public class Empleado extends Usuario {
                     break;
                 }
             }
-
-            Empleado empleado = new Empleado(nom,cont,ubi,tele, corr);
+            System.out.println("Ingrese su profesion/oficio(Panadero, cocinero, mecanico, etc)");
+            String prof = scan.next();
+            Empleado empleado = new Empleado(nom,cont,ubi,tele, corr,prof);
             escrituraEmpleados(empleado);
             System.out.println("Ha quedado registrado como: " +empleado);
 
@@ -39,7 +52,7 @@ public class Empleado extends Usuario {
         }
 
 
-         public static void lecturaEmpleado() {
+         public static String lecturaEmpleado() {
                 ArrayList<String[]> datosEmpleado = new ArrayList<String[]>();
                 lecturaDeEmpleados(datosEmpleado);
                 Scanner scan = new Scanner(System.in);
@@ -47,6 +60,8 @@ public class Empleado extends Usuario {
                 while(true){
                     String nombre = "";
                     String contrasena = "";
+                    String lugar = "";
+                    String profesion = "";
                     System.out.println("Ingrese su nombre de usuario: ");
                     String usuario = scan.next();
                     System.out.println("Ingrese su contraseña: ");
@@ -55,6 +70,8 @@ public class Empleado extends Usuario {
                     for (int i = 0; i < datosEmpleado.size(); i++){
                         nombre = datosEmpleado.get(i)[0];
                         contrasena = datosEmpleado.get(i)[1];
+                        lugar = datosEmpleado.get(i)[2];
+                        profesion = datosEmpleado.get(i)[5];
                         if(!nombre.equals(usuario) && !contrasena.equals(contrasena2)){
                             continue;
                         }
@@ -64,13 +81,14 @@ public class Empleado extends Usuario {
                     }
                     if (nombre.equalsIgnoreCase(usuario) && contrasena.equalsIgnoreCase(contrasena2)){
                         System.out.println("Contraseña correcta :)");
-                        break;
+                        return lugar + "-" + profesion;
                     }
                     else{
                         System.out.println("Usuario o contraseña incorreta" + nombre);
                         continue;
                     }
                 }
+
             }
 
 
@@ -108,14 +126,28 @@ public class Empleado extends Usuario {
         try {
             datos = new FileWriter("DatosEmpleados.txt",true);
             pw = new PrintWriter(datos);
-            pw.println(empleado.getNombre() + "," + empleado.getContraseña() + "," + empleado.getUbicacion() + "," + empleado.getTelefono() + "," + empleado.getCorreo());
+            pw.println(empleado.getNombre() + "," + empleado.getContraseña() + "," + empleado.getUbicacion() + "," + empleado.getTelefono() + "," + empleado.getCorreo() + "," + empleado.getProfesion());
             datos.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
+    public static void mostrarRecomendaciones(String datosUsuario){
+        ArrayList<String[]> datosEmpleador = new ArrayList<String[]>();
+        Empleador.lecturaDeEmpleadores(datosEmpleador);
+        Scanner scan = new Scanner(System.in);
+        String lugar = datosUsuario.substring(0, datosUsuario.indexOf("-"));
+        String profesion = datosUsuario.substring(datosUsuario.indexOf("-") + 1);
 
-
-
+        System.out.println("Sus recomendaciones segun localizacion y requisitos son las siguientes empresas/negocios: ");
+        while (true){
+            for (int i = 0; i < datosEmpleador.size(); i++){
+                if (lugar.equalsIgnoreCase(datosEmpleador.get(i)[2]) || profesion.equalsIgnoreCase(datosEmpleador.get(i)[5])){
+                    System.out.println("Nombre:" + datosEmpleador.get(i)[0] + " -- " + "Ubicacion:" + datosEmpleador.get(i)[2] + " -- " + "Numero de contacto:" + datosEmpleador.get(i)[3] + " -- " + "Correo:" + datosEmpleador.get(i)[4] + " -- " + "Requisitos:" + datosEmpleador.get(i)[5] + " -- " + "Numero de vacantes:" + datosEmpleador.get(i)[6]);
+                }
+            }
+            break;
+        }
     }
 }

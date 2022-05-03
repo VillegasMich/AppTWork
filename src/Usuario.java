@@ -57,4 +57,6 @@ public class Usuario {
         String encrip = this.contraseña.replaceAll(this.contraseña, "*************");
         return "Nombre "+ this.nombre + " -Contraseña "+ encrip + " -Ubicacion "+ this.ubicacion + " -Telefono " + telefono + " -Correo "+ correo;
     }
+
+
 }
