@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 public class Empleado extends Usuario {
 
+    private String profesion;
+
     public String getProfesion() {
         return profesion;
     }
@@ -13,7 +15,6 @@ public class Empleado extends Usuario {
         this.profesion = profesion;
     }
 
-    private String profesion;
 
     public Empleado(String nom, String con, String ubic, Long tel, String corr,String profesion) {
         super(nom, con, ubic, tel, corr);
@@ -80,7 +81,7 @@ public class Empleado extends Usuario {
                         }
                     }
                     if (nombre.equalsIgnoreCase(usuario) && contrasena.equalsIgnoreCase(contrasena2)){
-                        System.out.println("Contraseña correcta :)");
+                        System.out.println("Usuario y Contraseña correcta");
                         return lugar + "-" + profesion;
                     }
                     else{
@@ -88,7 +89,6 @@ public class Empleado extends Usuario {
                         continue;
                     }
                 }
-
             }
 
 

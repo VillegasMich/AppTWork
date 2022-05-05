@@ -129,7 +129,7 @@ public class Empleador extends Usuario{
                 }
             }
             if (nombre.equalsIgnoreCase(usuario) && contraseña.equalsIgnoreCase(contraseña2)){
-                System.out.println("Contraseña correcta :)");
+                System.out.println("Usuario y Contraseña correcta");
                 break;
             }
             else{
