@@ -21,6 +21,8 @@ public class Empleado extends Usuario {
         this.profesion = profesion;
     }
 
+//Este metodo se encarga de perdirle al empleado la informacion necesaria para registrarlo en el "sistema"
+
     public static void registroEmpleado()  {
             Scanner scan = new Scanner(System.in);
             System.out.println("Ingrese su nombre: ");
@@ -49,9 +51,9 @@ public class Empleado extends Usuario {
             escrituraEmpleados(empleado);
             System.out.println("Ha quedado registrado como: " +empleado);
 
-            //hacerl lo del archivo
         }
 
+//Este metodo se encarga de hacer la autenticacion de empleados previamente registrados y permitirles continiuar si ingresan bien el usuario y la contraseña
 
          public static String lecturaEmpleado() {
                 ArrayList<String[]> datosEmpleado = new ArrayList<String[]>();
@@ -91,6 +93,7 @@ public class Empleado extends Usuario {
                 }
             }
 
+//Este metodo se encarga de leer el archivo DatosEmpleado.txt
 
             public static void lecturaDeEmpleados(ArrayList<String[]> datosEmpleado) {
                     BufferedReader reader = null;
@@ -107,6 +110,7 @@ public class Empleado extends Usuario {
                 }
 
 
+//Este metodo usa los valores ingresados en registroEmpleado() y se encarga de almacenarlos en el archivo DatosEmpleados.txt
 
     public static void escrituraEmpleados(Empleado empleado)  {
 
@@ -132,6 +136,8 @@ public class Empleado extends Usuario {
             e.printStackTrace();
         }
     }
+
+//Este metodo le muestra a los empleados la informacion de los Empleadores con los que comparte ubucaicon o requisitos/profesion
 
     public static void mostrarRecomendaciones(String datosUsuario){
         ArrayList<String[]> datosEmpleador = new ArrayList<String[]>();

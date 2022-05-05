@@ -34,6 +34,8 @@ public class Empleador extends Usuario{
             return "Nombre "+ getNombre() + " - Contraseña "+ encript + " - Ubicacion "+ getUbicacion() + " - Telefono " + getTelefono() + " - Correo "+ getCorreo() + " - Requisitos " + getRequi() + " - Ofertas " + getOfertas();
         }
 
+    //Este metodo se encarga de perdirle al Empleador la informacion necesaria para registrarlo en el "sistema"
+
     public static void registroEmpleador(){
              Scanner scan = new Scanner(System.in);
              String corr;
@@ -65,6 +67,8 @@ public class Empleador extends Usuario{
              escribirEmpleador(empleador);
         }
 
+//Este metodo usa los valores ingresados en registroEmpleador() y se encarga de almacenarlos en el archivo DatosEmpleador.txt
+
         public static void escribirEmpleador(Empleador empleador){
 
 
@@ -91,6 +95,8 @@ public class Empleador extends Usuario{
                 }
             }
 
+//Este metodo se encarga de leer el archivo DatosEmpleador.txt
+
     public static void lecturaDeEmpleadores(ArrayList<String[]> datosEmpleado) {
         BufferedReader reader = null;
         try {
@@ -104,6 +110,8 @@ public class Empleador extends Usuario{
             e.printStackTrace();
         }
     }
+
+    //Este metodo se encarga de hacer la autenticacion de empleadores previamente registrados y permitirles continiuar si ingresan bien el usuario y la contraseña
 
     public static void lecturaEmpleadores() {
         ArrayList<String[]> datosEmpleador = new ArrayList<String[]>();

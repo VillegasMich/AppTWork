@@ -1,5 +1,7 @@
 public class Usuario {
 
+    //Estos sos los atrubiutos que comparten tanto empleados como empleadores.
+
     private String nombre;
     private String contraseña;
     private String ubicacion;// Definir ubicaciones.

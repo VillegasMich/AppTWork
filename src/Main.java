@@ -24,12 +24,16 @@ public class Main {
         }
     }
 
+//Este metodo contiene los primeros textos del programa
+
     public static void menuPrincipal() {
         System.out.println("Bienvendios a Twork");
         System.out.println("¡Donde buscar trabajo es un placer!");
         System.out.println("Digite [1] para ingresar");
         System.out.println("Digite [2] para consultar");
     }
+
+//Este metodo contiene el algoritmo necesario para ejecutar la opcion Ingresar 
 
     public static void opcionIngresar() {
         Scanner scan = new Scanner(System.in);
@@ -62,6 +66,8 @@ public class Main {
             }
         }
     }
+
+//Este metodo muetra la informacion de todos los Empleadores previamente registados, en caso de seleccionar la opcion Visualizacion
 
     public static void opcionVisualizacion() {
         ArrayList<String[]> datosEmpleador = new ArrayList<String[]>();
