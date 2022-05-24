@@ -145,11 +145,10 @@ public class Empleador extends Usuario{
         String lugar = datosUsuario.substring(0, datosUsuario.indexOf("-"));
         String profesion = datosUsuario.substring(datosUsuario.indexOf("-") + 1);
 
-        System.out.println("Sus recomendaciones segun localizacion y requisitos son las siguientes empresas/negocios: ");
         while (true){
             for (int i = 0; i < datosEmpleado.size(); i++){
                 if (lugar.equalsIgnoreCase(datosEmpleado.get(i)[2]) || profesion.equalsIgnoreCase(datosEmpleado.get(i)[5])){
-                    total += "Sus recomendaciones segun localizacion y requisitos son las siguientes empresas/negocios: " +" \n " + "Nombre: " + datosEmpleado.get(i)[0] + " \n " + "Ubicacion: " + datosEmpleado.get(i)[2] + " \n " + "Numero de contacto: " + datosEmpleado.get(i)[3] + " \n " + "Correo: " + datosEmpleado.get(i)[4] + " \n "+ "Profesion: " + datosEmpleado.get(i)[5] + " \n ";
+                    total += "RECOMENDACION: " + " \n " + "Nombre: " + datosEmpleado.get(i)[0] + " \n " + "Ubicacion: " + datosEmpleado.get(i)[2] + " \n " + "Numero de contacto: " + datosEmpleado.get(i)[3] + " \n " + "Correo: " + datosEmpleado.get(i)[4] + " \n "+ "Profesion: " + datosEmpleado.get(i)[5] + " \n " + "\n";
                 }
             }
             JOptionPane.showMessageDialog(null, "\n" + total);
