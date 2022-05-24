@@ -57,7 +57,7 @@ public class Usuario {
     }
     public String toString(){
         String encrip = this.contraseña.replaceAll(this.contraseña, "*************");
-        return "Nombre "+ this.nombre + " -Contraseña "+ encrip + " -Ubicacion "+ this.ubicacion + " -Telefono " + telefono + " -Correo "+ correo;
+        return  "\n" +" - NOMBRE "+ this.nombre + "\n" + " - CONTRASEÑA "+ encrip + "\n" + " - UBICACION "+ this.ubicacion + "\n" + " - TELEFONO " + telefono + "\n" + " - CORREO "+ correo;
     }
 
 

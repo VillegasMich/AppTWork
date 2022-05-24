@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
@@ -25,31 +26,28 @@ public class Empleado extends Usuario {
 
     public static void registroEmpleado()  {
             Scanner scan = new Scanner(System.in);
-            System.out.println("Ingrese su nombre: ");
-            String nom = scan.next();
-            System.out.println("Ingrese su contraseña: ");
-            String cont = scan.next();
-            System.out.println("Ingrese su ubicacion: ");
-            String ubi = scan.next();
-            System.out.println("Ingrese su numero de telefono: ");
-            Long tele = scan.nextLong();
+            String nom = JOptionPane.showInputDialog("Ingrese su nombre:");
+            String cont = JOptionPane.showInputDialog("Ingrese si contraseña: ");
+            String ubi = JOptionPane.showInputDialog("Ingrese su ubicacion: ");
+            Long tele = Long.parseLong(JOptionPane.showInputDialog("Ingrese su numero de telefono:"));
             String corr;
             while (true){
-                System.out.println("Ingrese su correo: ");
-                corr = scan.next();
+
+                corr = JOptionPane.showInputDialog("Ingrese su correo: ");
                 if (!corr.contains("@")){
-                    System.out.println("El correo ingresado no es valido");
+                    JOptionPane.showMessageDialog(null, "El correo ingresado no es valido");
                     continue;
                 }
                 else {
                     break;
                 }
             }
-            System.out.println("Ingrese su profesion/oficio(Panadero, cocinero, mecanico, etc)");
-            String prof = scan.next();
+
+            String prof = JOptionPane.showInputDialog("Ingrese su profesion/oficio(Panadero, cocinero, mecanico, etc)");
             Empleado empleado = new Empleado(nom,cont,ubi,tele, corr,prof);
             escrituraEmpleados(empleado);
-            System.out.println("Ha quedado registrado como: " +empleado);
+
+            JOptionPane.showMessageDialog(null,"Ha quedado registrado como: " + empleado);
 
         }
 
@@ -65,10 +63,8 @@ public class Empleado extends Usuario {
                     String contrasena = "";
                     String lugar = "";
                     String profesion = "";
-                    System.out.println("Ingrese su nombre de usuario: ");
-                    String usuario = scan.next();
-                    System.out.println("Ingrese su contraseña: ");
-                    String contrasena2 = scan.next();
+                    String usuario = JOptionPane.showInputDialog("Ingrese su nombre de usuario:");
+                    String contrasena2 = JOptionPane.showInputDialog("Ingrese contraseña:");
 
                     for (int i = 0; i < datosEmpleado.size(); i++){
                         nombre = datosEmpleado.get(i)[0];
@@ -83,11 +79,12 @@ public class Empleado extends Usuario {
                         }
                     }
                     if (nombre.equalsIgnoreCase(usuario) && contrasena.equalsIgnoreCase(contrasena2)){
-                        System.out.println("Usuario y Contraseña correcta");
+                        //System.out.println("Usuario y Contraseña correcta");
+                        JOptionPane.showMessageDialog(null, "Usuario y Contraseña correcta");
                         return lugar + "-" + profesion;
                     }
                     else{
-                        System.out.println("Usuario o contraseña incorreta" + nombre);
+                        JOptionPane.showMessageDialog(null, "Usuario o contraseña incorreta");
                         continue;
                     }
                 }
@@ -140,19 +137,20 @@ public class Empleado extends Usuario {
 //Este metodo le muestra a los empleados la informacion de los Empleadores con los que comparte ubucaicon o requisitos/profesion
 
     public static void mostrarRecomendaciones(String datosUsuario){
+        String total = "";
         ArrayList<String[]> datosEmpleador = new ArrayList<String[]>();
         Empleador.lecturaDeEmpleadores(datosEmpleador);
-        Scanner scan = new Scanner(System.in);
         String lugar = datosUsuario.substring(0, datosUsuario.indexOf("-"));
         String profesion = datosUsuario.substring(datosUsuario.indexOf("-") + 1);
 
-        System.out.println("Sus recomendaciones segun localizacion y requisitos son las siguientes empresas/negocios: ");
+
         while (true){
             for (int i = 0; i < datosEmpleador.size(); i++){
                 if (lugar.equalsIgnoreCase(datosEmpleador.get(i)[2]) || profesion.equalsIgnoreCase(datosEmpleador.get(i)[5])){
-                    System.out.println("Nombre:" + datosEmpleador.get(i)[0] + " -- " + "Ubicacion:" + datosEmpleador.get(i)[2] + " -- " + "Numero de contacto:" + datosEmpleador.get(i)[3] + " -- " + "Correo:" + datosEmpleador.get(i)[4] + " -- " + "Requisitos:" + datosEmpleador.get(i)[5] + " -- " + "Numero de vacantes:" + datosEmpleador.get(i)[6]);
+                    total += "\n" + "Sus recomendaciones segun localizacion y requisitos son las siguientes empresas/negocios: " +" \n " + "Nombre: " + datosEmpleador.get(i)[0] + " \n " + "Ubicacion: " + datosEmpleador.get(i)[2] + " \n " + "Numero de contacto: " + datosEmpleador.get(i)[3] + " \n " + "Correo: " + datosEmpleador.get(i)[4] + " \n " + "Requisitos: " + datosEmpleador.get(i)[5] + " \n " + "Numero de vacantes: " + datosEmpleador.get(i)[6] + " \n " + " \n ";
                 }
             }
+            JOptionPane.showMessageDialog(null, "\n" + total);
             break;
         }
     }

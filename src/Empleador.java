@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -31,43 +32,34 @@ public class Empleador extends Usuario{
     @Override
     public String toString(){
             String encript = getContraseña().replaceAll(getContraseña(), "*******");
-            return "Nombre "+ getNombre() + " - Contraseña "+ encript + " - Ubicacion "+ getUbicacion() + " - Telefono " + getTelefono() + " - Correo "+ getCorreo() + " - Requisitos " + getRequi() + " - Ofertas " + getOfertas();
+            return  "\n" + " - NOMBRE "+ getNombre() + "\n" + " - CONTRASEÑA "+ encript + "\n" + " - UBICACION "+ getUbicacion()+ "\n" + " - TELEFONO " + getTelefono()+ "\n" + " - CORREO "+ getCorreo()+ "\n" + " - REQUISITOS " + getRequi()+ "\n" + " - OFERTAS " + getOfertas();
         }
 
-    //Este metodo se encarga de perdirle al Empleador la informacion necesaria para registrarlo en el "sistema"
 
     public static void registroEmpleador(){
              Scanner scan = new Scanner(System.in);
              String corr;
-             System.out.println("Ingrese el nombre del negocio: ");
-             String nom = scan.next();
-             System.out.println("Ingrese su contraseña: ");
-             String cont = scan.next();
-             System.out.println("Ingrese donde esta ubicado su negocio: ");
-             String ubi = scan.next();
-             System.out.println("Ingrese su numero de telefono empresarial: ");
-             Long tele = scan.nextLong();
+             String nom = JOptionPane.showInputDialog("Ingrese el nombre del negocio:");
+             String cont = JOptionPane.showInputDialog("Ingrese la contraseña :");
+             String ubi = JOptionPane.showInputDialog("Ingrese donde esta ubicado su negocio:");
+             Long tele = Long.parseLong(JOptionPane.showInputDialog("Ingrese el numero de telefono "));
               while (true){
-                  System.out.println("Ingrese su correo: ");
-                   corr = scan.next();
+                   corr = JOptionPane.showInputDialog("Ingrese su correo");
                     if (!corr.contains("@")){
-                        System.out.println("El correo ingresado no es valido");
+                        JOptionPane.showMessageDialog(null, "El correo ingresado no es valido");
                     }
                     else {
                         break;
                     }
              }
-             System.out.println("Digite los requisitos para ingresar al trabajo(Ejemplo: Panadero, ayudante etc...): ");
-             String requi = scan.next();
-             System.out.println("Digite las ofertas de su negocio ");
-             int numOfer = scan.nextInt();
+             String requi = JOptionPane.showInputDialog("Ditgite sus requisitos:  ");
+             int numOfer = Integer.parseInt(JOptionPane.showInputDialog("Digite el numero de ofertas de su negocio: "));
              Empleador empleador = new Empleador(nom, cont, ubi, tele, corr,numOfer, requi);
-             System.out.println("Ha quedado registrado como: " + empleador);
+             JOptionPane.showMessageDialog(null,"Ha quedado registrado como: " + empleador);
 
              escribirEmpleador(empleador);
         }
 
-//Este metodo usa los valores ingresados en registroEmpleador() y se encarga de almacenarlos en el archivo DatosEmpleador.txt
 
         public static void escribirEmpleador(Empleador empleador){
 
@@ -95,7 +87,6 @@ public class Empleador extends Usuario{
                 }
             }
 
-//Este metodo se encarga de leer el archivo DatosEmpleador.txt
 
     public static void lecturaDeEmpleadores(ArrayList<String[]> datosEmpleado) {
         BufferedReader reader = null;
@@ -111,24 +102,24 @@ public class Empleador extends Usuario{
         }
     }
 
-    //Este metodo se encarga de hacer la autenticacion de empleadores previamente registrados y permitirles continiuar si ingresan bien el usuario y la contraseña
 
-    public static void lecturaEmpleadores() {
+    public static String lecturaEmpleadores() {
         ArrayList<String[]> datosEmpleador = new ArrayList<String[]>();
         lecturaDeEmpleadores(datosEmpleador);
-        Scanner scan = new Scanner(System.in);
 
         while(true){
             String nombre = "";
             String contraseña = "";
-            System.out.println("Ingrese su nombre de usuario: ");
-            String usuario = scan.next();
-            System.out.println("Ingrese su contraseña: ");
-            String contraseña2 = scan.next();
+            String lugar = "";
+            String profesion = "";
+            String usuario = JOptionPane.showInputDialog("Ingrese su nombre de usuario:");
+            String contraseña2 = JOptionPane.showInputDialog("Ingrese contraseña:");
 
             for (int i = 0; i < datosEmpleador.size(); i++){
                 nombre = datosEmpleador.get(i)[0];
                 contraseña = datosEmpleador.get(i)[1];
+                lugar = datosEmpleador.get(i)[2];
+                profesion = datosEmpleador.get(i)[5];
                 if(!nombre.equals(usuario) && !contraseña.equals(contraseña2)){
                     continue;
                 }
@@ -137,13 +128,32 @@ public class Empleador extends Usuario{
                 }
             }
             if (nombre.equalsIgnoreCase(usuario) && contraseña.equalsIgnoreCase(contraseña2)){
-                System.out.println("Usuario y Contraseña correcta");
-                break;
+                JOptionPane.showMessageDialog(null, "Usuario y Contraseña correcta");
+                return lugar + "-" + profesion;
             }
             else{
-                System.out.println("Usuario o contraseña incorreta");
+                JOptionPane.showMessageDialog(null, "Usuario o contraseña incorreta");
                 continue;
             }
+        }
+    }
+
+    public static void mostrarRecomendaciones(String datosUsuario){
+        String total = "";
+        ArrayList<String[]> datosEmpleado = new ArrayList<String[]>();
+        Empleado.lecturaDeEmpleados(datosEmpleado);
+        String lugar = datosUsuario.substring(0, datosUsuario.indexOf("-"));
+        String profesion = datosUsuario.substring(datosUsuario.indexOf("-") + 1);
+
+        System.out.println("Sus recomendaciones segun localizacion y requisitos son las siguientes empresas/negocios: ");
+        while (true){
+            for (int i = 0; i < datosEmpleado.size(); i++){
+                if (lugar.equalsIgnoreCase(datosEmpleado.get(i)[2]) || profesion.equalsIgnoreCase(datosEmpleado.get(i)[5])){
+                    total += "Sus recomendaciones segun localizacion y requisitos son las siguientes empresas/negocios: " +" \n " + "Nombre: " + datosEmpleado.get(i)[0] + " \n " + "Ubicacion: " + datosEmpleado.get(i)[2] + " \n " + "Numero de contacto: " + datosEmpleado.get(i)[3] + " \n " + "Correo: " + datosEmpleado.get(i)[4] + " \n "+ "Profesion: " + datosEmpleado.get(i)[5] + " \n ";
+                }
+            }
+            JOptionPane.showMessageDialog(null, "\n" + total);
+            break;
         }
     }
 

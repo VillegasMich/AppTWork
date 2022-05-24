@@ -1,2 +1,13 @@
 kfc,kfc,envigado,3141331,kfc@gmail.com,cocinero,4
 mibuñuelo,buñuelo,envigado,123342,buñuelo@gmail.com,panadero,8
+PlayDance,dance,Antioquia,3045548765,PlayDance@gmail.com,Bailarina,2
+Lavafante,elefantes34,Antioquia,3333679605,Lavafante@gmail.com,mecanico,1
+Bancolombia,Bnaco6149,magdalena,3067863455,Bancolombia@gmail.com,5,8
+OrtodonciasCaldas,ortodoncias123,caldas,3447486698,OrtodonciasCaldas@gmail.com,dentista,1
+RapiDogs,dograpi,Antioquia,3073457588,RapiDogs@gmail.com,cocinero,2
+CarpinteriaSA,carpi333,cesar,3176534344,CarpinteriaSA@gmail.com,domiciliario,2
+ElectroMecanica,losmejoresmecanicos,envigado,3005356754,ElectroMecanicos@gmail.com,mecanico,5
+ElectrodomesticosArango,aspiradora20,Antioquia,3041234534,ElectroArango@gmail.com,vendedor,3
+PapasEsteban,1324,Envigado,2435,manuel@ijhsd,cocinero,2
+Pepepapas,2546,qaregf,2346,jnafdg@sdfg,hola,5
+kebab,kebab,envigado,23562,wqtg@ardfg,cocinero,2

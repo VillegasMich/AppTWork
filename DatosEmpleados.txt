@@ -1,3 +1,10 @@
 esteban,estebanm30,envigado,3146259560,esteban.muriel30@gmail.com,cocinero
 miguel,vasquez,caldas,31245312,miguel@gmail.com,panadero
 mauro,mauro1968,caldas,4213142,fae@fisja,zapatero
+sofia,sofia123,caldas,3053086996,sofia@yahoo.com,panadero
+Manuel,h1h2h3,Antioquia,3162118590,manuel@gmail.com,mecanico
+Juan,juan1234,caldas,314134125,juan@gmail.com,mecanico
+pepe,2546,medellin,1345764,pepe@gmail.com,cocinero
+pepe,3425,mnqiafg,14356,adfg@gera,cocinero
+Miguel,jaja,medellin,3126543,miguel@gmail.com,Panadero
+Manuel,2003,caldas,23463,qergrfgw@,mecanico
